@@ -1,0 +1,18 @@
+from dijkstar import Graph, find_path
+graph = Graph()
+graph.add_edge(1, 2, (110, 'Main Street'))
+graph.add_edge(2, 3, (125, 'Main Street'))
+graph.add_edge(3, 4, (500, '1st Street'))
+
+def cost_func(u, v, edge, prev_edge):
+     length, name = edge
+     if prev_edge:
+         prev_name = prev_edge[1]
+     else:
+         prev_name = None
+     cost = length
+     if name != prev_name:
+         cost += 10
+     return cost
+
+print(find_path(graph, 1, 4, cost_func=cost_func))
